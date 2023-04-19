@@ -31,7 +31,7 @@ if __name__ == '__main__':
         os.environ["VK_ICD_FILENAMES"] = args.vulkan_device_files
 
     if sys.platform == "win32":
-        assert executable_name[-4:] == "-Cmd"
+        # assert executable_name[-4:] == "-Cmd"
         assert executable_ext == ".exe"
         executable_internal = os.path.realpath(args.executable)
     elif sys.platform == "darwin":

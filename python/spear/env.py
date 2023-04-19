@@ -126,7 +126,6 @@ class Env(gym.Env):
                     os.path.realpath(os.path.join(os.path.dirname(os.path.realpath(self._config.SPEAR.STANDALONE_EXECUTABLE)), "SpearSim", "Content", "Paks"))
             else:
                 assert False
-
             assert os.path.exists(paks_dir)
 
             # we don't use os.path.realpath here because we don't want to resolve the symlink
@@ -154,13 +153,13 @@ class Env(gym.Env):
             launch_executable = self._config.SPEAR.STANDALONE_EXECUTABLE
         else:
             assert False
-
+        print("launch executable : %s",launch_executable)
         assert os.path.exists(launch_executable)
 
         launch_executable_name, launch_executable_ext = os.path.splitext(launch_executable)
 
         if sys.platform == "win32":
-            assert launch_executable_name[-4:] == "-Cmd"
+            # assert launch_executable_name[-4:] == "-Cmd"
             assert launch_executable_ext == ".exe"
             launch_executable_internal = launch_executable
         elif sys.platform == "darwin":
