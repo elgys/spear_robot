@@ -28,7 +28,7 @@ if __name__ == "__main__":
         if sys.platform == "win32":
             c_compiler = "cl"
         elif sys.platform in ["darwin", "linux"]:
-            c_compiler = "gcc"
+            c_compiler = "clang"
         else:
             assert False
     else:
@@ -38,7 +38,7 @@ if __name__ == "__main__":
         if sys.platform == "win32":
             cxx_compiler = "cl"
         elif sys.platform in ["darwin", "linux"]:
-            cxx_compiler = "g++"
+            cxx_compiler = "clang++"
         else:
             assert False
     else:
@@ -313,7 +313,8 @@ if __name__ == "__main__":
             "--build",
             ".",
             "-j",
-            f"{args.num_parallel_jobs}"]
+            f"{args.num_parallel_jobs}" 
+	    ]
 
     else:
         assert False
