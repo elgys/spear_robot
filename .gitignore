@@ -5,6 +5,7 @@ cpp/.vs
 cpp/unreal_plugins/*/Binaries
 cpp/unreal_plugins/*/Intermediate
 cpp/unreal_plugins/*/ThirdParty
+cpp/unreal_plugins/*/.vs
 
 cpp/unreal_projects/SpearSim/Binaries
 cpp/unreal_projects/SpearSim/Build
