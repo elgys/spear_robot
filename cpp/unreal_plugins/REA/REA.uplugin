@@ -1,0 +1,35 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "REA",
+	"Description": "a implementation of REA WARNING: The loading phases for {CoreUtils, OpenBot} must be ordered as follows: LoadingPhase(CoreUtils) < LoadingPhase(OpenBot)",
+	"Category": "Other",
+	"CreatedBy": "levi",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "REA",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	  "Plugins": [
+        {
+            "Name": "CoreUtils",
+            "Enabled": true
+        },
+        {
+            "Name": "PhysXVehicles",
+            "Enabled": true
+        }
+    ]
+}
+

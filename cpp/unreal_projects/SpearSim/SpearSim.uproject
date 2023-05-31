@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "{0004624D-08DB-40F4-9917-FE6E0E0C9DBE}",
+	"EngineAssociation": "4.26",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -34,6 +34,10 @@
 		{
 			"Name": "UrdfBot",
 			"Enabled": true
+		},
+		{
+			"Name": "spherebot",
+			"Enabled": false
 		}
 	]
 }
