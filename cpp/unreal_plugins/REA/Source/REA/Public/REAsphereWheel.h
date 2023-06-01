@@ -9,13 +9,13 @@
 
 #include "CoreUtils/SuppressCompilerWarnings.h"
 
-#include "OpenBotWheel.generated.h"
+#include "REAsphereWheel.generated.h"
 
 // We need to wrap this entire class with BEGIN_SUPPRESS_COMPILER_WARNINGS/END_SUPPRESS_COMPILER_WARNINGS
 // because it inherits from a deprecated class that interacts with Unreal's code generation functionality.
 BEGIN_SUPPRESS_COMPILER_WARNINGS
 UCLASS()
-class UREAsphereWheel : public UVehicleWheel
+class UREASphereWheel : public UVehicleWheel
 {
     GENERATED_BODY()
 public:

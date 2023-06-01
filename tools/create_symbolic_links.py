@@ -84,6 +84,7 @@ if __name__ == "__main__":
     # create symlink for each plugin listed in the project, if the plugin is in our unreal_plugins dir
     for project_plugin in project_plugins:
         if project_plugin in unreal_plugins:
+            print("%S",project_plugin)
             plugin_dir = os.path.realpath(os.path.join(unreal_plugins_dir, project_plugin))
             symlink_plugin_dir = os.path.join(project_plugins_dir, project_plugin) # don't want os.path.realpath here
             if spear.path_exists(symlink_plugin_dir):

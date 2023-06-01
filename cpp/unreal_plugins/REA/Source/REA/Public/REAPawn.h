@@ -19,12 +19,12 @@ class USkeletalMeshComponent;
 // This class is inspired by the WheeledVehicle class, defined in:
 //     Engine/Plugins/Runtime/PhysXVehicles/Source/PhysXVehicles/Public/WheeledVehicle.h
 UCLASS()
-class REA_API AOpenBotPawn : public APawn
+class REA_API AREAPawn : public APawn
 {
     GENERATED_BODY()
 public:
-    AOpenBotPawn(const FObjectInitializer& object_initializer);
-    ~AOpenBotPawn();
+    AREAPawn(const FObjectInitializer& object_initializer);
+    ~AREAPawn();
 
     // APawn interface
     void SetupPlayerInputComponent(UInputComponent* input_component) override;

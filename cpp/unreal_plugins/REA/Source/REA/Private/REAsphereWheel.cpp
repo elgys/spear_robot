@@ -2,7 +2,7 @@
 // Copyright(c) 2022 Intel. Licensed under the MIT License <http://opensource.org/licenses/MIT>.
 //
 
-#include "OpenBot/OpenBotWheel.h"
+#include "REA/REAsphereWheel.h"
 
 #include <iostream>
 
