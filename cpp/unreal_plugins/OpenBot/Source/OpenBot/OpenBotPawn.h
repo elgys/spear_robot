@@ -10,12 +10,14 @@
 #include <CoreMinimal.h>
 #include <GameFramework/Pawn.h>
 
-#include "OpenBotPawn.generated.h"
+
 
 class UBoxComponent;
 class UCameraComponent;
 class USimpleWheeledVehicleMovementComponent;
 class USkeletalMeshComponent;
+
+#include "OpenBotPawn.generated.h"
 
 // This class is inspired by the WheeledVehicle class, defined in:
 //     Engine/Plugins/Runtime/PhysXVehicles/Source/PhysXVehicles/Public/WheeledVehicle.h

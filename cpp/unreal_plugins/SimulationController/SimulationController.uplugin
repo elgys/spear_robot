@@ -33,6 +33,10 @@
         {
             "Name": "UrdfBot",
             "Enabled": true
+        },
+        {
+            "Name": "REA",
+            "Enabled" : true
         }
     ]
 }

@@ -56,6 +56,7 @@ void SimulationController::StartupModule()
     ASSERT(FModuleManager::Get().IsModuleLoaded(TEXT("CoreUtils")));
     ASSERT(FModuleManager::Get().IsModuleLoaded(TEXT("OpenBot")));
     ASSERT(FModuleManager::Get().IsModuleLoaded(TEXT("UrdfBot")));
+    ASSERT(FModuleManager::Get().IsModuleLoaded(TEXT("REA")));
 
     if (!Config::s_initialized_) {
         return;
@@ -201,6 +202,10 @@ void SimulationController::worldBeginPlayEventHandler()
         agent_ = std::make_unique<SphereAgent>(world_);
     } else if (Config::get<std::string>("SIMULATION_CONTROLLER.AGENT") == "UrdfBotAgent") {
         agent_ = std::make_unique<UrdfBotAgent>(world_);
+    } else if (Config::get<std::string>("SIMULATION_CONTROLLER.AGENT") == "REA") {
+        agent_ = std::make_unique<REAAgent>(world_);
+    }
+
     } else {
         ASSERT(false);
     }
