@@ -15,6 +15,7 @@ DEFAULT_CONFIG_FILES = [
     os.path.realpath(os.path.join(SPEAR_ROOT_DIR, "config", "default_config.openbot.yaml")),
     os.path.realpath(os.path.join(SPEAR_ROOT_DIR, "config", "default_config.urdfbot.yaml")),
     os.path.realpath(os.path.join(SPEAR_ROOT_DIR, "config", "default_config.simulation_controller.yaml")),
+    os.path.realpath(os.path.join(SPEAR_ROOT_DIR, "config","default_config.REA.yaml")),
     os.path.realpath(os.path.join(SPEAR_ROOT_DIR, "config", "default_config.spear.yaml")) ]
 
 

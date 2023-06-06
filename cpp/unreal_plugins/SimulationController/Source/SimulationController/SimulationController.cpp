@@ -33,6 +33,7 @@
 #include "SimulationController/NullTask.h"
 #include "SimulationController/OpenBotAgent.h"
 #include "SimulationController/PointGoalNavTask.h"
+#include "SimulationController/REAAgent.h"
 #include "SimulationController/RpcServer.h"
 #include "SimulationController/SphereAgent.h"
 #include "SimulationController/Task.h"
@@ -206,7 +207,7 @@ void SimulationController::worldBeginPlayEventHandler()
         agent_ = std::make_unique<REAAgent>(world_);
     }
 
-    } else {
+    else {
         ASSERT(false);
     }
     ASSERT(agent_);
