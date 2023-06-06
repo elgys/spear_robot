@@ -2,7 +2,7 @@
 // Copyright(c) 2022 Intel. Licensed under the MIT License <http://opensource.org/licenses/MIT>.
 //
 
-#include "SimulationController/OpenBotAgent.h"
+#include "SimulationController/REAAgent.h"
 
 #include <map>
 #include <memory>
@@ -80,21 +80,12 @@ REAAgent::REAAgent(UWorld* world)
         imu_sensor_ = std::make_unique<ImuSensor>(REA_pawn_->imu_component_);
         ASSERT(imu_sensor_);
     }
-    
-    if (Std::contains(observation_components, "sonar")) {
-        sonar_sensor_ = std::make_unique<SonarSensor>(REA_pawn_->sonar_component_);
-        ASSERT(sonar_sensor_);
-    }
+
 }
 
 REAAgent::~REAAgent()
 {
     auto observation_components = Config::get<std::vector<std::string>>("SIMULATION_CONTROLLER.OPENBOT_AGENT.OBSERVATION_COMPONENTS");
-
-    if (Std::contains(observation_components, "sonar")) {
-        ASSERT(sonar_sensor_);
-        sonar_sensor_ = nullptr;
-    }
 
     if (Std::contains(observation_components, "imu")) {
         ASSERT(imu_sensor_);
@@ -153,7 +144,7 @@ void REAAgent::cleanUpObjectReferences()
     }
 }
 
-std::map<std::string, Box> OpenBotAgent::getActionSpace() const
+std::map<std::string, Box> REAAgent::getActionSpace() const
 {
     
     std::map<std::string, Box> action_space;
@@ -189,7 +180,7 @@ std::map<std::string, Box> OpenBotAgent::getActionSpace() const
     return action_space;
 }
 
-std::map<std::string, Box> OpenBotAgent::getObservationSpace() const
+std::map<std::string, Box> REAAgent::getObservationSpace() const
 {
     std::map<std::string, Box> observation_space;
     Box box;
@@ -228,13 +219,6 @@ std::map<std::string, Box> OpenBotAgent::getObservationSpace() const
         observation_space["imu"] = std::move(box); // a_x, a_y, a_z, g_x, g_y, g_z
     }
 
-    if (Std::contains(observation_components, "sonar")) {
-        box.low_ = std::numeric_limits<float>::lowest();
-        box.high_ = std::numeric_limits<float>::max();
-        box.datatype_ = DataType::Float32;
-        box.shape_ = {1};
-        observation_space["sonar"] = std::move(box); // Front obstacle distance in [m]
-    }
     
     std::map<std::string, Box> camera_sensor_observation_space = camera_sensor_->getObservationSpace(observation_components);
     for (auto& camera_sensor_observation_space_component : camera_sensor_observation_space) {
@@ -244,7 +228,7 @@ std::map<std::string, Box> OpenBotAgent::getObservationSpace() const
     return observation_space;
 }
 
-std::map<std::string, Box> OpenBotAgent::getStepInfoSpace() const
+std::map<std::string, Box> REAAgent::getStepInfoSpace() const
 {
     std::map<std::string, Box> step_info_space;
     Box box;
@@ -262,7 +246,7 @@ std::map<std::string, Box> OpenBotAgent::getStepInfoSpace() const
     return step_info_space;
 }
 
-void OpenBotAgent::applyAction(const std::map<std::string, std::vector<uint8_t>>& action)
+void REAAgent::applyAction(const std::map<std::string, std::vector<uint8_t>>& action)
 {
     auto action_components = Config::get<std::vector<std::string>>("SIMULATION_CONTROLLER.OPENBOT_AGENT.ACTION_COMPONENTS");
 
@@ -293,7 +277,7 @@ void OpenBotAgent::applyAction(const std::map<std::string, std::vector<uint8_t>>
     }
 }
 
-std::map<std::string, std::vector<uint8_t>> OpenBotAgent::getObservation() const
+std::map<std::string, std::vector<uint8_t>> REAAgent::getObservation() const
 {
     std::map<std::string, std::vector<uint8_t>> observation;
 
@@ -340,10 +324,6 @@ std::map<std::string, std::vector<uint8_t>> OpenBotAgent::getObservation() const
             imu_sensor_->angular_rate_.Z});
     }
 
-    if (Std::contains(observation_components, "sonar")) {
-        observation["sonar"] = Std::reinterpret_as<uint8_t>(std::vector<float>{
-            sonar_sensor_->range_});
-    }
 
     std::map<std::string, std::vector<uint8_t>> camera_sensor_observation = camera_sensor_->getObservation(observation_components);
     for (auto& camera_sensor_observation_component : camera_sensor_observation) {
@@ -353,7 +333,7 @@ std::map<std::string, std::vector<uint8_t>> OpenBotAgent::getObservation() const
     return observation;
 }
 
-std::map<std::string, std::vector<uint8_t>> OpenBotAgent::getStepInfo() const
+std::map<std::string, std::vector<uint8_t>> REAAgent::getStepInfo() const
 {
     std::map<std::string, std::vector<uint8_t>> step_info;
 
@@ -366,7 +346,7 @@ std::map<std::string, std::vector<uint8_t>> OpenBotAgent::getStepInfo() const
     return step_info;
 }
 
-void OpenBotAgent::reset()
+void REAAgent::reset()
 {
     // For some reason, the pose of AOpenBotPawn needs to be set using ETeleportType::TeleportPhysics, which maintains
     // velocity information across calls to SetActorPositionAndRotation(...). Since tasks are supposed to be implemented
@@ -390,12 +370,12 @@ void OpenBotAgent::reset()
     }
 }
 
-bool OpenBotAgent::isReady() const
+bool REAAgent::isReady() const
 {
     return REA_pawn_->GetVelocity().Size() <= Config::get<float>("SIMULATION_CONTROLLER.OPENBOT_AGENT.IS_READY_VELOCITY_THRESHOLD");
 }
 
-void OpenBotAgent::buildNavMesh()
+void REAAgent::buildNavMesh()
 {
     // Set the navmesh properties
     nav_mesh_->AgentRadius            = Config::get<float>("SIMULATION_CONTROLLER.OPENBOT_AGENT.NAVMESH.AGENT_RADIUS");
@@ -460,7 +440,7 @@ void OpenBotAgent::buildNavMesh()
     #endif
 }
 
-void OpenBotAgent::generateTrajectoryToGoal()
+void REAAgent::generateTrajectoryToGoal()
 {
     trajectory_.clear();
     

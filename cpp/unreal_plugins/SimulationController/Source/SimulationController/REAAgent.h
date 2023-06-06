@@ -16,10 +16,9 @@ class ARecastNavMesh;
 class UNavigationSystemV1;
 class UWorld;
 
-class AOpenBotPawn;
+class AREAPawn;
 class CameraSensor;
 class ImuSensor;
-class SonarSensor;
 struct Box;
 
 class REAAgent : public Agent
@@ -46,7 +45,7 @@ private:
     void buildNavMesh();
     void generateTrajectoryToGoal();
 
-    AOpenBotPawn* open_bot_pawn_ = nullptr;
+    AREAPawn* REA_pawn_ = nullptr;
     AActor* goal_actor_ = nullptr;
 
     UNavigationSystemV1* nav_sys_ = nullptr;
@@ -54,7 +53,6 @@ private:
 
     std::unique_ptr<CameraSensor> camera_sensor_;
     std::unique_ptr<ImuSensor> imu_sensor_;
-    std::unique_ptr<SonarSensor> sonar_sensor_;
 
     std::vector<float> trajectory_;
 };
