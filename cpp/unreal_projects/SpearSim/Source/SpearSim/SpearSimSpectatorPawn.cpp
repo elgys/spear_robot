@@ -21,6 +21,7 @@ ASpearSimSpectatorPawn::ASpearSimSpectatorPawn(const FObjectInitializer& object_
     if (!Config::s_initialized_) {
         return;
     }
+    std::cout << "[SPEAR | spearSimSpectatorPawn.cpp] AspearSimSpectatorPawn::ASpearSimSpectatorPawn done with.";
 }
 
 ASpearSimSpectatorPawn::~ASpearSimSpectatorPawn()
@@ -31,7 +32,7 @@ ASpearSimSpectatorPawn::~ASpearSimSpectatorPawn()
 void ASpearSimSpectatorPawn::SetupPlayerInputComponent(UInputComponent* input_component)
 {
     ASpectatorPawn::SetupPlayerInputComponent(input_component);
-
+    
     UPlayerInput* player_input = GetWorld()->GetFirstPlayerController()->PlayerInput;
     player_input->AddAxisMapping(FInputAxisKeyMapping(Unreal::toFName("Exit"), FKey(Unreal::toFName("Escape")), 1.0f));
     input_component->BindAxis("Exit", this, &ASpearSimSpectatorPawn::exit);
