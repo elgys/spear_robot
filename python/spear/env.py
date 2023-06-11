@@ -111,6 +111,7 @@ class Env(gym.Env):
 
         # create a symlink to SPEAR.PAKS_DIR
         if self._config.SPEAR.LAUNCH_MODE == "standalone_executable" and self._config.SPEAR.PAKS_DIR != "":
+            print(self._config.SPEAR.STANDALONE_EXECUTABLE)
 
             assert os.path.exists(self._config.SPEAR.STANDALONE_EXECUTABLE)
             assert os.path.exists(self._config.SPEAR.PAKS_DIR)
