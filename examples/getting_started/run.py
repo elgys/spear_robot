@@ -55,6 +55,14 @@ if __name__ == "__main__":
                 print(obs["control_data"])
                 print(obs["camera.final_color"].shape, obs["camera.final_color"].dtype)
                 print(reward, done, info)
+        elif config.SIMULATION_CONTROLLER.AGENT == "REAAgent":
+            obs, reward, done, info = env.step(action={"apply_voltage":np.array([1.0,0.715], dtype=np.float32)})
+            if not args.benchmark:
+                print("[SPEAR | run.py] OpenBotAgent: ")
+                print(obs["state_data"])
+                print(obs["control_data"])
+                print(obs["camera.final_color"].shape, obs["camera.final_color"].dtype)
+                print(reward, done, info)
         else:
             assert False
 

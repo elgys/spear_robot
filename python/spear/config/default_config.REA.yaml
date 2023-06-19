@@ -6,8 +6,7 @@ REA:
     GEAR_RATIO: 50.0               # Gear ratio of the OpenBot motors
 
     BATTERY_VOLTAGE: 5.0          # Voltage of the battery powering the OpenBot [V]
-    CONTROL_DEAD_ZONE: 1.0         # Absolute duty cycle (in the ACTION_SCALE range) below which a +
-command does not produces any torque on the vehicle
+    CONTROL_DEAD_ZONE: 1.0         # Absolute duty cycle (in the ACTION_SCALE range) below which a command does not produces any torque on the vehicle
     MOTOR_TORQUE_MAX: 0.19         # Motor maximal torque [N.m]
     ELECTRICAL_RESISTANCE: 0.5     # Motor winding electrical resistance [Ohms]
     ELECTRICAL_INDUCTANCE: 0.5     # Motor winding electrical inductance [Henry]

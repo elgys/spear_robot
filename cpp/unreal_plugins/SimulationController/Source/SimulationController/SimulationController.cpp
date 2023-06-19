@@ -203,10 +203,9 @@ void SimulationController::worldBeginPlayEventHandler()
         agent_ = std::make_unique<SphereAgent>(world_);
     } else if (Config::get<std::string>("SIMULATION_CONTROLLER.AGENT") == "UrdfBotAgent") {
         agent_ = std::make_unique<UrdfBotAgent>(world_);
-    } else if (Config::get<std::string>("SIMULATION_CONTROLLER.AGENT") == "REA") {
+    } else if (Config::get<std::string>("SIMULATION_CONTROLLER.AGENT") == "REAAgent") {
         agent_ = std::make_unique<REAAgent>(world_);
     }
-
     else {
         ASSERT(false);
     }

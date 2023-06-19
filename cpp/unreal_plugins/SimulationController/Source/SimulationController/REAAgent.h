@@ -16,7 +16,7 @@ class ARecastNavMesh;
 class UNavigationSystemV1;
 class UWorld;
 
-class AREAPawn;
+class AREApawn;
 class CameraSensor;
 class ImuSensor;
 struct Box;
@@ -45,7 +45,7 @@ private:
     void buildNavMesh();
     void generateTrajectoryToGoal();
 
-    AREAPawn* REA_pawn_ = nullptr;
+    AREApawn* REA_pawn_ = nullptr;
     AActor* goal_actor_ = nullptr;
 
     UNavigationSystemV1* nav_sys_ = nullptr;
